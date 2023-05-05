@@ -1,4 +1,8 @@
-import React, {FC, useEffect, useState} from 'react';
+import React from 'react'
+import {FC} from 'react';
+import {useEffect} from 'react';
+import {useState} from 'react';
+import {useCallback} from 'react';
 import axios from 'axios';
 import {get} from 'lodash';
 import {round} from 'lodash';
@@ -13,7 +17,7 @@ const WalletStats: FC<Props> = () => {
   const [suggestions, setSuggestions] = useState<DebankUserSearchItem[]>([]);
   const [wallets, setWallets] = useState<string[]>([]);
 
-  const fetchSuggestions = async () => {
+  const fetchSuggestions = useCallback(async (search) => {
     try {
       const response = await axios.get( 'https://api.debank.com/user/search_v3', {
           params: {q: search},
@@ -23,11 +27,11 @@ const WalletStats: FC<Props> = () => {
       console.error('Error fetching suggestions:', error);
       setSuggestions([]);
     }
-  };
+  }, []);
 
   useEffect(() => {
       if (search) {
-        fetchSuggestions();
+        fetchSuggestions(search);
       } else {
         setSuggestions([]);
       }
@@ -35,11 +39,11 @@ const WalletStats: FC<Props> = () => {
     [search]
   );
 
-  const addWallet = (suggestion: DebankUserSearchItem) => {
+  const addWallet = useCallback((suggestion: DebankUserSearchItem, wallets) => {
     setWallets([...wallets, suggestion.id]);
     setSuggestions([]);
     setSearch('');
-  }
+  }, []);
 
   // const addWallet = (e: React.FormEvent) => {
   //   e.preventDefault();
@@ -76,7 +80,7 @@ const WalletStats: FC<Props> = () => {
             {suggestions.map((el, index) => (
               <li key={index}
                   className="pl-5 justify-between py-3 border-b cursor-pointer bg-white hover:bg-blue-700 hover:text-white"
-                  onClick={() => addWallet(el)}
+                  onClick={() => addWallet(el, wallets)}
               >
                 {el.id}
                 <div className="text-gray-400">${round(el.desc.usd_value, 2)}</div>
