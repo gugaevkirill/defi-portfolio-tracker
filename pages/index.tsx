@@ -1,5 +1,4 @@
-import Image from 'next/image'
-import WalletStats from "../modules/wallets";
+import WalletStats from "@/components/wallets";
 
 
 const MainPage = () => (

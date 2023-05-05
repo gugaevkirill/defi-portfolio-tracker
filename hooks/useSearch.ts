@@ -1,5 +1,5 @@
-import { debounce } from 'lodash';
 import { useEffect, useRef, useState } from 'react';
+import { debounce } from 'lodash';
 
 const useSearch = (initial = '') => {
   const [currentValue, setSearch] = useState(initial);
