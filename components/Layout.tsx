@@ -14,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <>
-      <main>{children}</main>
+      <div className={inter.className}>{children}</div>
     </>
   );
 }
