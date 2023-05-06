@@ -139,7 +139,7 @@ const WalletStats: FC<Props> = () => {
             </ul>
           </>}
 
-          {portfolio.usd_value && <>
+          {portfolio.usd_value ? <>
             <h3 className="pt-8 text-2xl font-bold">Portfolio by Coin:</h3>
             <div className="mt-2 relative overflow-x-auto shadow-md sm:rounded-lg">
               <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -193,7 +193,7 @@ const WalletStats: FC<Props> = () => {
                 </tbody>
               </table>
             </div>
-          </>}
+          </> : <></>}
 
           {/*<button*/}
           {/*  className="bg-slate-900 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 text-white font-semibold h-12 px-6 rounded-lg my-5"*/}

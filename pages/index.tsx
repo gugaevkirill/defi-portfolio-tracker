@@ -8,7 +8,7 @@ const MainPage = () => (
     <Head>
       <title>DEFI Portfolio Tracker</title>
     </Head>
-    <main className="p-24 min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100">
+    <main className="pt-24 px-6 sm:px-12 lg:px-24 min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100">
       <div className="max-w-5xl mx-auto sm:pt-5 lg:pt-10">
         <h1 className="font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-center dark:text-white">
           Portfolio Value from Debank
