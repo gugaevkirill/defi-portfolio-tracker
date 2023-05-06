@@ -1,4 +1,6 @@
-import { Inter } from 'next/font/google'
+import Head from 'next/head';
+import { Inter } from 'next/font/google';
+import YandexMetrika from './YandexMetrika';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,6 +16,15 @@ export default function RootLayout({
 }) {
   return (
     <>
+      <Head>
+        <YandexMetrika
+          yid={process.env.YANDEX_METRIKA_ID}
+          clickmap={true}
+          trackLinks={true}
+          accurateTrackBounce={true}
+          webvisor={true}
+        />
+      </Head>
       <div className={inter.className}>{children}</div>
     </>
   );
