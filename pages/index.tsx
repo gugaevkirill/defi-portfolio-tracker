@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import WalletStats from "@/components/wallets";
+import WalletStats from "@/components/Wallets";
 
 
 const MainPage = () => (
