@@ -1,11 +1,4 @@
-export interface DebankUserSearchItem {
-  id: string;
-  desc: {
-    usd_value: number;
-  };
-}
-
-export interface WalletBalanceByCoin {
+export type WalletBalanceByCoin = {
   id: string;
   symbol: string;
   price: number;
@@ -15,16 +8,16 @@ export interface WalletBalanceByCoin {
   value_pct: number;
 }
 
-export interface WalletBalanceExchangePool {
+export type WalletBalanceExchangePool = {
   name: string;
 }
 
-export interface WalletBalanceByExchange {
+export type WalletBalanceByExchange = {
   name: string;
   pools: WalletBalanceExchangePool[];
 }
 
-export interface Portfolio {
+export type Portfolio = {
   wallets: string[];
   usd_value: number;
   by_coin: {[key: string]: WalletBalanceByCoin}

@@ -1,24 +1,11 @@
-import React from 'react'
-import {FC} from 'react';
-import {useEffect} from 'react';
-import {useState} from 'react';
-import {useCallback} from 'react';
+import React, {FC, useCallback, useEffect, useState} from 'react'
 import axios from 'axios';
-import {get} from 'lodash';
-import {round} from 'lodash';
-import {sumBy} from 'lodash';
-import {values} from 'lodash';
-import {forEach} from 'lodash';
-import {has} from 'lodash';
-import {reverse} from 'lodash';
-import {sortBy} from 'lodash';
-import {isEmpty} from 'lodash';
+import {forEach, get, has, isEmpty, reverse, round, sortBy, sumBy, values} from 'lodash';
 import Image from 'next/image';
 
 import useSearch from '@/hooks/useSearch';
-import {DebankUserSearchItem} from "@/types/Wallets";
-import {WalletBalanceByCoin} from "@/types/Wallets";
-import {Portfolio} from "@/types/Wallets";
+import {DebankAssetClassifyByCoin, DebankUserSearchItem} from "@/types/Debank";
+import {Portfolio, WalletBalanceByCoin} from "@/types/Wallets";
 
 type Props = unknown;
 
@@ -72,7 +59,7 @@ const WalletStats: FC<Props> = () => {
       const token_list = get(response, 'data.data.token_list', []);
 
       // Update Portfolio by_coin
-      coin_list.concat(token_list).map(el => {
+      coin_list.concat(token_list).map((el: DebankAssetClassifyByCoin) => {
         if (has(portfolio.by_coin, el.id)) {
           const pfc = portfolio.by_coin[el.id]
           pfc.amount = pfc.amount + el.amount;
