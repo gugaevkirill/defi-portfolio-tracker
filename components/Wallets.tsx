@@ -32,7 +32,7 @@ const WalletStats: FC<Props> = () => {
     by_exchange: {},
   });
 
-  const fetchSuggestions = useCallback(async (search) => {
+  const fetchSuggestions = useCallback(async (search: string) => {
     try {
       const response = await axios.get( 'https://api.debank.com/user/search_v3', {
           params: {q: search},
@@ -51,7 +51,7 @@ const WalletStats: FC<Props> = () => {
         setSuggestions([]);
       }
     },
-    [search]
+    [search, fetchSuggestions]
   );
 
   const addWallet = useCallback(async (suggestion: DebankUserSearchItem, portfolio: Portfolio) => {
@@ -59,7 +59,6 @@ const WalletStats: FC<Props> = () => {
     setSearch('');
 
     // Do nothing if wallet already exists in Portfolio
-    console.log(suggestion.id, portfolio.wallets);
     if (portfolio.wallets.includes(suggestion.id)) {
       return
     }
@@ -102,12 +101,11 @@ const WalletStats: FC<Props> = () => {
         by_coin: portfolio.by_coin,
         by_exchange: portfolio.by_exchange,
       };
-      console.log(pf_updated);
       setPortfolio(pf_updated);
     } catch (error) {
       alert(`Debank API error: ${error}`);
     }
-  }, []);
+  }, [setSuggestions, setSearch, setPortfolio]);
 
   return (
     <>
